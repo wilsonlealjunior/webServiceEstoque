@@ -1,0 +1,42 @@
+<application>
+  <component name="RecentDirectoryProjectsManager">
+    <option name="recentPaths">
+      <list>
+        <option value="$USER_HOME$/Desktop/SisCAF" />
+        <option value="$USER_HOME$/Desktop/connectedin" />
+      </list>
+    </option>
+    <option name="openPaths">
+      <list>
+        <option value="$USER_HOME$/Desktop/SisCAF" />
+      </list>
+    </option>
+    <option name="lastPath" value="$USER_HOME$/Desktop/SisCAF" />
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/Desktop/SisCAF">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="PY-172.3968.37" />
+              <option name="productionCode" value="PY" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1506770490368" />
+              <option name="buildTimestamp" value="1504274465521" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Desktop/connectedin">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="PY-172.3968.37" />
+              <option name="productionCode" value="PY" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1506173155795" />
+              <option name="buildTimestamp" value="1504274512078" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</application>

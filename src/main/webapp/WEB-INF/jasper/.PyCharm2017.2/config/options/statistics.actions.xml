@@ -1,0 +1,45 @@
+<application>
+  <component name="ActionsCollector">
+    <counts>
+      <entry action="$Copy" count="2" />
+      <entry action="$SelectAll" count="3" />
+      <entry action="$Undo" count="70" />
+      <entry action="CheckinProject" count="1" />
+      <entry action="CleanPyc" count="2" />
+      <entry action="CloseAllEditors" count="1" />
+      <entry action="CodeCompletion" count="3" />
+      <entry action="CommentByLineComment" count="3" />
+      <entry action="ContextHelp" count="1" />
+      <entry action="EditorBackSpace" count="727" />
+      <entry action="EditorChooseLookupItem" count="23" />
+      <entry action="EditorCopy" count="196" />
+      <entry action="EditorCut" count="10" />
+      <entry action="EditorDelete" count="19" />
+      <entry action="EditorDown" count="456" />
+      <entry action="EditorDuplicate" count="1" />
+      <entry action="EditorEnter" count="88" />
+      <entry action="EditorEscape" count="8" />
+      <entry action="EditorIndentSelection" count="4" />
+      <entry action="EditorLeft" count="804" />
+      <entry action="EditorLeftWithSelection" count="28" />
+      <entry action="EditorNextWord" count="35" />
+      <entry action="EditorNextWordWithSelection" count="43" />
+      <entry action="EditorPaste" count="123" />
+      <entry action="EditorPreviousWord" count="81" />
+      <entry action="EditorPreviousWordWithSelection" count="60" />
+      <entry action="EditorRight" count="1004" />
+      <entry action="EditorRightWithSelection" count="10" />
+      <entry action="EditorTab" count="33" />
+      <entry action="EditorUnindentSelection" count="16" />
+      <entry action="EditorUp" count="300" />
+      <entry action="EditorUpWithSelection" count="1" />
+      <entry action="NewFile" count="2" />
+      <entry action="NextTemplateVariable" count="1" />
+      <entry action="OpenFile" count="3" />
+      <entry action="SaveAll" count="415" />
+      <entry action="SearchEverywhere" count="2" />
+      <entry action="SynchronizeCurrentFile" count="1" />
+      <entry action="ToggleLineBreakpoint" count="1" />
+    </counts>
+  </component>
+</application>

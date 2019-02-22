@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="geral" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2fedbd5a-f6c7-470a-99a7-d1481c23ac26">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT p.nome AS produto, l.nome AS Loja, IFNULL((SELECT SUM(vep.quantidadeVendida) FROM Venda AS v INNER JOIN VendaEntradaProduto vep ON vep.idVenda = v.id INNER JOIN EntradaProduto ep ON ep.id = vep.idEntradaProduto WHERE p.id = vep.idProduto and v.nomeVendedor like '%'  and v.desativado = 0),0) AS vendida FROM Produto AS p INNER JOIN Loja l ON p.loja_id = l.id where l.id like '%'  order by vendida desc]]>
+	</queryString>
+	<field name="produto" class="java.lang.String"/>
+	<field name="Loja" class="java.lang.String"/>
+	<field name="vendida" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="18" width="572" height="42" backcolor="#FFFF33" uuid="7c82b38e-79c3-4d14-b066-0183ae1821ad"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="117" y="18" width="353" height="42" uuid="3f33136e-7763-4352-b57a-4575c0810c71"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de produtos mais vendido]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="28" backcolor="#FFFF33" uuid="3dde4eff-13cc-4f52-bb55-26bc8004dffa"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="190" height="20" uuid="41c34d80-481a-4581-b633-8990638a245e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="190" height="20" uuid="c583fd45-e1c8-457e-baca-e58e717e70fe"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="190" height="20" uuid="febe8859-5203-419a-9a3d-a62c48bbe45b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE VENDIDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="190" height="20" uuid="af4dc57e-d8c9-4b5c-b470-676981ac59e7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="190" height="20" uuid="084b5f0f-09e1-4d5b-b6ad-ceb6f5a7ba12"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Loja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="190" height="20" uuid="ec1f80b1-b20e-4b32-8d5d-2ad2df8c4ccf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vendida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

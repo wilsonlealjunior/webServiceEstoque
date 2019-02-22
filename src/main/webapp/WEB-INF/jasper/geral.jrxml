@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="geral" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2fedbd5a-f6c7-470a-99a7-d1481c23ac26">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+    p.nome AS produto,
+    l.nome AS loja,
+   IFNULL((SELECT
+            SUM(quantidadeVendida)
+        FROM
+            vendaentradaproduto AS vep
+        WHERE
+            p.id = vep.idProduto),0) AS vendida,
+    IFNULL((SELECT
+            SUM(aep.quantidade) AS avaria
+        FROM
+            avariaentradaproduto aep
+                INNER JOIN
+            entradaproduto ep ON aep.idEntradaProduto = ep.id
+        WHERE
+            p.id = ep.produto_id
+        ORDER BY p.id),0) AS avaria,
+   IFNULL( (SELECT
+            SUM(ep.quantidade)
+        FROM
+            entradaproduto ep
+        WHERE
+            p.id = ep.produto_id
+        GROUP BY p.id),0) AS entrada,
+    IFNULL((SELECT
+            SUM(mp.quantidade)
+        FROM
+            movimentacaoproduto mp
+        WHERE
+            p.id = mp.idProduto
+        GROUP BY p.id),0) AS movimentada,
+    IFNULL((SELECT
+            SUM(fep.quantidade) AS furo
+        FROM
+            furoentradaproduto fep
+                INNER JOIN
+            entradaproduto ep ON fep.idEntradaProduto = ep.id
+        WHERE
+            p.id = ep.produto_id
+        ORDER BY p.id),0) AS furo
+FROM
+    produto AS p
+        INNER JOIN
+    loja l ON p.loja_id = l.id order by l.nome,p.nome;]]>
+	</queryString>
+	<field name="produto" class="java.lang.String"/>
+	<field name="loja" class="java.lang.String"/>
+	<field name="vendida" class="java.lang.Integer"/>
+	<field name="avaria" class="java.lang.Integer"/>
+	<field name="entrada" class="java.lang.Integer"/>
+	<field name="movimentada" class="java.lang.Integer"/>
+	<field name="furo" class="java.lang.Integer"/>
+	<group name="loja">
+		<groupExpression><![CDATA[$F{loja}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<rectangle>
+					<reportElement x="0" y="13" width="572" height="20" backcolor="#FFFF33" uuid="8ca17364-2c22-474e-9ec4-8a4c8e2f9709"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<textField>
+					<reportElement x="236" y="15" width="100" height="20" uuid="9bd14c04-cbfe-4069-926a-59f691668840"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{loja}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="nomeProduto">
+		<groupExpression><![CDATA[$F{produto}]]></groupExpression>
+		<groupHeader>
+			<band height="12"/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="18" width="572" height="42" backcolor="#FFFF33" uuid="7c82b38e-79c3-4d14-b066-0183ae1821ad"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="183" y="18" width="206" height="42" uuid="3f33136e-7763-4352-b57a-4575c0810c71"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório Geral]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="28" backcolor="#FFFF33" uuid="3dde4eff-13cc-4f52-bb55-26bc8004dffa"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="81" height="20" uuid="d367c766-0265-4e47-a458-59045f83590e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="81" height="20" uuid="bfebccaa-5f65-47b8-8ce2-8624f2b41f19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="0" width="81" height="20" uuid="2aa392fd-f493-4668-b543-7728ebdd2f50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="0" width="81" height="20" uuid="d4ebb89a-e010-44b5-9b09-85c21e13ca87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[AVARIADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="0" width="81" height="20" uuid="2dc7a61b-18cb-4dd9-abba-c1c2b5e6e869"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTRADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="0" width="81" height="20" uuid="48909eef-c5b9-42f3-a87d-9d33859d2f12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOVIMENTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="0" width="81" height="20" uuid="7caf927e-efff-4afa-9713-3aa133eae64e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FURO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="81" height="20" uuid="8bb5186b-5093-4e18-a47e-5142844b9817"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="81" y="0" width="81" height="20" uuid="d82265b3-1350-4bf2-887b-f5bcfda6c0c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{loja}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="243" y="0" width="81" height="20" uuid="ca5f4f01-9cba-4138-9b1e-e94324f70a5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{avaria}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="324" y="0" width="81" height="20" uuid="aa83f256-e91f-47fd-84dd-941d952cae88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entrada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="405" y="0" width="81" height="20" uuid="d1f686c8-4822-4521-b901-05596f4d7021"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimentada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="486" y="0" width="81" height="20" uuid="c7d22bc1-0fe2-4917-949f-b81dad879606"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{furo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="162" y="0" width="81" height="20" uuid="9216d9dd-522d-4305-821d-fcf117df1340"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vendida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
